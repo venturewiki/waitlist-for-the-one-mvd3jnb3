@@ -1,0 +1,245 @@
+cover:
+  companyName: Waitlist for The One
+  tagline: An AI matchmaker that finds exactly the person you described. Pay only when that person exists, and meet to unlock the next match.
+  mission: Make intentional, real-world dating accessible to everyone at an impulse price, not a luxury matchmaking fee.
+  vision: Replace swipe-and-chat apps with scarce, mutual, AI-picked introductions that end in an actual date, starting in NYC and expanding to more US cities and Europe.
+  productType: ai-agent
+  industryVertical: Dating & Relationships
+  stage: idea
+  fundingStage: bootstrapped
+  headquarters: New York, NY
+  legalStructure: To be defined
+  websiteUrl: ''
+  logoEmoji: ⏳
+  accentColor: '#C2185B'
+  version: v0.1
+  preparedBy: Roberto Eisenlohr (from the founders' call, 2026-10)
+  fundingSought: About $120k build estimate (stated on the call)
+  tractionHighlights:
+    revenue: Pre-revenue
+    users: Pre-launch. Waitlist target is the first 1,000 NYC signups
+    partnerships: Venue partners for check-in and attendance rewards (planned)
+    press: None yet
+problemSolution:
+  corePainPoint: Dating apps are swipe-and-chat loops. People ghost, flake, collect matches for ego and never meet. Human matchmakers fix this, but cost thousands of dollars (Tawkify is about $5k for 5 matches).
+  painDimensions:
+    who: Singles who want a real relationship and are tired of swiping, starting with NYC
+    frequency: Daily app use with few real dates. Only 1 in 10 partnered adults met online (Pew)
+    currentWorkarounds: Hinge, Tinder and Bumble subscriptions, or expensive human matchmakers (Tawkify, Sitch at $89.99 and up per setup)
+    costOfProblem: Wasted time, ghosting and scams. 63% of men under 50 on dating apps met someone they thought was a scammer (Pew)
+    urgencyLevel: High. Intent-driven dating is the fastest-growing segment (Hinge grew from $8M in 2018 to $691M in 2025)
+  solutionOneLiner: Describe your ideal partner to an AI voice agent. Wait on a free waitlist, get told "we found 5 people", and unlock one for about $29. The app books the date from both calendars, and you unlock your next match only after checking in at the venue.
+  features:
+    - feature: AI voice interview
+      benefit: Turns a spoken description of "the one" into structured preference tags (looks, values, lifestyle, orientation)
+      techLayer: Realtime voice LLM + tag extraction
+    - feature: Reciprocal matching
+      benefit: Each person must fit the other's description. Fully automatic, with no browsing or swiping
+      techLayer: Postgres + pgvector, rule engine
+    - feature: '"We found N people"'
+      benefit: Real, small counts create scarcity and curiosity, and are never shown as "99+"
+      techLayer: Push notifications (FCM/APNs)
+    - feature: Pay-per-match credits
+      benefit: Free waitlist, impulse pricing ($29 for 1, $50 for 2), with credits debited only when a match exists
+      techLayer: In-app purchase + Stripe ledger
+    - feature: Calendar booking, no chat
+      benefit: Pick a slot from the other person's availability within 24 h. Stalling releases the other side
+      techLayer: Timers / match-lifecycle state machine
+    - feature: Venue check-in (meet-to-unlock)
+      benefit: Both confirm on arrival by QR or photo. The next match unlocks only after a confirmed meeting
+      techLayer: Signed QR tokens + feedback
+    - feature: Private profiles
+      benefit: Nickname only, with photo and name revealed after unlock. No GPS or Bluetooth tracking
+      techLayer: Private object storage (R2)
+  unfairAdvantage: The meet-to-unlock rule, venue check-in, no chat at all, first-to-accept dispatch across candidates, and a $29 price. Competitors offer voice onboarding and hidden photos (Known) or pay-per-setup at $89.99 and up (Sitch), but none require a confirmed meeting before the next match.
+  market:
+    tam: Unmarried US adults
+    tamSize: 117.6M people
+    tamSource: US Census Bureau (2023)
+    sam: US adults who used dating apps, of whom 35% ever paid
+    samSize: 30% of US adults
+    samSource: Pew Research Center (2023)
+    som: NYC waitlist in year 1 (illustrative)
+    somSize: 10k–50k users
+    somSource: Illustrative scenarios in the requirements document
+  whyNow: Swipe fatigue is high and money is moving to intent-driven dating (Hinge is +26% year on year). AI voice agents now make a matchmaker-quality intake cheap enough for a $29 price. Known (SF) and Sitch (NYC) show the category is opening, so speed to NYC matters.
+productGtm:
+  techStack:
+    productType: Mobile app (iOS + Android) + waitlist site
+    frontend: Flutter app; Cloudflare-hosted waitlist landing page
+    backend: FastAPI (matching rules, timers, ledger) on Railway
+    aiLayer: Realtime voice interview LLM + embeddings for preference matching
+    dataStorage: Postgres + pgvector; private photos in Cloudflare R2
+    authPayments: In-app purchase (App Store / Play) + Stripe; ID/selfie check (phase 2)
+    hosting: Railway + Cloudflare
+    buildStage: Requirements (from the founders' call)
+    ipLayer: Meet-to-unlock match lifecycle and reciprocal matching rules
+  gtmChannels:
+    - channel: Waitlist landing page
+      tactic: '"Describe the one" signup and free waitlist, NYC first'
+      goal90Day: 1,000 NYC signups
+      owner: Founders
+      budgetPerMonth: TBD
+    - channel: Social / short video
+      tactic: Hook on the Netflix series "The One" and on the hourglass "time is running" brand
+      goal90Day: TBD
+      owner: Founder
+      budgetPerMonth: TBD
+    - channel: Venue partners
+      tactic: Check-in venues offer attendance rewards (free drink, discount on the next match)
+      goal90Day: 10 NYC venues
+      owner: Founders
+      budgetPerMonth: TBD
+  icp: Relationship-seeking singles in NYC, tired of swipe apps, who would pay a small fee for a real date with someone who matches what they asked for
+  pricingModel: Prepaid match credits, with no subscription at launch. Paid priority and attendance rewards come later
+  pricePoint: $29 for 1 match, $50 for 2, +$10 for a 3rd (open decision)
+  salesMotion: Self-serve in-app purchase
+  timeToValue: When a match exists, the date is booked within 24 h
+  competitors:
+    - dimension: Model
+      yourProduct: AI match, pay per match, meet-to-unlock
+      competitorA: 'Known: AI voice interview, hidden photos'
+      competitorB: 'Sitch: AI matchmaker, pay per setup'
+      competitorC: 'Tawkify: human matchmakers'
+    - dimension: Price
+      yourProduct: $29 per match
+      competitorA: Not verified
+      competitorB: $89.99–$159.99 per setup (reported)
+      competitorC: Thousands of dollars
+    - dimension: Chat
+      yourProduct: None (calendar booking only)
+      competitorA: Limited (24-hour windows)
+      competitorB: Curated setups
+      competitorC: Matchmaker-mediated
+    - dimension: Proof of meeting
+      yourProduct: Two-sided venue check-in required
+      competitorA: 'No'
+      competitorB: 'No'
+      competitorC: Feedback only
+teamRoadmap:
+  founders:
+    - name: Founder (idea owner)
+      role: CEO / Product vision
+      background: Previously ran an eyewear company
+      commitment: To be defined
+      equity: To be defined
+    - name: Roberto Eisenlohr (Beto)
+      role: Product & Tech
+      background: AI engineering, NYC; builds with Devin AI
+      commitment: To be defined
+      equity: To be defined
+  advisors: ''
+  openRoles: Trust & safety / dispute handling, growth marketing
+  kpis:
+    - metric: Waitlist signups (NYC)
+      current: '0'
+      target3mo: 1,000
+      target12mo: 10,000+
+      notes: Phase 00 exit
+    - metric: Dates booked and checked in
+      current: '0'
+      target3mo: '0'
+      target12mo: '100'
+      notes: Phase 01 exit
+    - metric: Unlock rate (share of waitlist paying per month)
+      current: N/A
+      target3mo: N/A
+      target12mo: 10–20%
+      notes: Illustrative assumption
+  milestones:
+    - milestone: 00 · Name, logo, waitlist site
+      owner: Founders
+      targetDate: TBD
+      budget: TBD
+      successCriteria: Domain bought, waitlist live, first 1,000 NYC signups
+      status: not-started
+    - milestone: 01 · MVP app (NYC)
+      owner: Beto + Devin
+      targetDate: TBD
+      budget: TBD
+      successCriteria: 100 real dates booked and checked in
+      status: not-started
+    - milestone: 02 · Trust and safety
+      owner: Beto + Devin
+      targetDate: TBD
+      budget: TBD
+      successCriteria: Store review passes; dispute rate measured
+      status: not-started
+    - milestone: 03 · Growth levers
+      owner: Founders
+      targetDate: TBD
+      budget: TBD
+      successCriteria: Paid priority, venue rewards, referral, more US cities
+      status: not-started
+fundingAsk:
+  totalRaise: TBD
+  instrument: Bootstrapped
+  valuationCapTerms: N/A
+  targetCloseDate: TBD
+  askOneLiner: Build the NYC MVP of an AI matchmaker where every match has to end in a real meeting.
+  useOfFunds: []
+  elevatorPitch:
+    hook: Dating apps sell endless swiping, and only 1 in 10 couples met online.
+    companyIntro: 'Waitlist for The One: tell an AI who you want, and we tell you when that person exists.'
+    tractionProof: Pre-launch. Requirements come from a 3-hour founders' call
+    marketSize: 117.6M unmarried US adults; Hinge alone earns $691M/yr on intent-driven dating
+    askAndUse: Build the MVP and launch the NYC waitlist
+    cta: Join the waitlist
+  risks:
+    - risk: Liquidity / cold start
+      likelihood: high
+      impact: high
+      mitigation: Launch in one city; design the waitlist so waiting feels intentional
+    - risk: Known and Sitch move first
+      likelihood: high
+      impact: medium
+      mitigation: Speed to NYC; meet-to-unlock mechanic as the moat
+    - risk: Safety without chat
+      likelihood: medium
+      impact: high
+      mitigation: Verified identities, public venues only, share-your-date, easy reporting
+    - risk: Check-in disputes
+      likelihood: medium
+      impact: medium
+      mitigation: Two-sided QR check-in + feedback history + human dispute path
+    - risk: App-store fees and rules
+      likelihood: high
+      impact: medium
+      mitigation: In-app purchase for unlocks (15–30% fee); reporting, blocking and moderation built in
+    - risk: Deceptive counts or reviews
+      likelihood: low
+      impact: high
+      mitigation: Real counts and real reviews only (the FTC banned fake reviews in 2024)
+financials:
+  revenueModel: Pay-per-match credits ($29 for 1, $50 for 2); paid priority later; optional subscription once the platform is large
+  grossMargin: About 85% after the 15% app-store small-business fee (before infrastructure)
+  burnRate: TBD
+  runway: TBD
+  breakEvenTarget: TBD
+  cac: TBD
+  ltv: TBD
+  projections:
+    - year: Seed (10k users · 10% unlock · $29)
+      revenue: $29k/mo gross
+      ebitda: TBD
+      users: 10,000
+    - year: NYC (50k · 20% · $40)
+      revenue: $400k/mo gross
+      ebitda: TBD
+      users: 50,000
+    - year: Multi-city (150k · 25% · $45)
+      revenue: $1.69M/mo gross
+      ebitda: TBD
+      users: 150,000
+isPublic: true
+createdBy: anonymous
+id: waitlist-for-the-one-mvd3jnb3
+slug: waitlist-for-the-one-mvd3jnb3
+contributors:
+  - anonymous
+viewCount: 0
+editCount: 0
+isArchived: false
+isFeatured: false
+createdAt: '2026-10-18T00:38:00.782Z'
+updatedAt: '2026-10-18T00:38:00.782Z'
